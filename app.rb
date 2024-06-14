@@ -10,7 +10,7 @@ set :port, ENV["PORT"] || 4567
 
 set :cache, TmpCache::Cache.new
 
-Faraday.default_connection = Faraday.new(options = { :headers => { :user_agent => "AnimeToday (+https://animetoday.herokuapp.com/)" } })
+Faraday.default_connection_options.headers = { "User-Agent" => "AnimeToday (+https://animetoday.herokuapp.com/)" }
 
 before do
   content_type "application/json"
