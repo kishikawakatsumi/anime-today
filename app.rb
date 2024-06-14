@@ -1,6 +1,7 @@
 require "active_support"
 require "active_support/core_ext"
 require "sinatra"
+require "faraday"
 require "syoboi_calendar"
 require "tmp_cache"
 
@@ -8,6 +9,8 @@ set :bind, "0.0.0.0"
 set :port, ENV["PORT"] || 4567
 
 set :cache, TmpCache::Cache.new
+
+Faraday.default_connection = Faraday.new(options = { :headers => { :user_agent => "AnimeToday (+https://animetoday.herokuapp.com/)" } })
 
 before do
   content_type "application/json"
